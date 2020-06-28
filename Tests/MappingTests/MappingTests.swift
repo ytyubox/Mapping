@@ -2,14 +2,17 @@ import XCTest
 @testable import Mapping
 
 final class MappingTests: XCTestCase {
-    func testExample() {
+    func testMapping() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(Mapping().text, "Hello, World!")
+        let value = Mapping<Int>(0)
+        let result = value.map(String.init)
+        
+        XCTAssertEqual(result.value, "0")
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testMapping", testMapping),
     ]
 }
