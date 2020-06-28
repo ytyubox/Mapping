@@ -7,4 +7,7 @@ class MapableTests: XCTestCase {
         let result = $source.map(String.init)
         XCTAssertEqual(result.value, String(source))
     }
+    static var allTests = [
+        ("testMapable",testMapable)
+    ]
 }
