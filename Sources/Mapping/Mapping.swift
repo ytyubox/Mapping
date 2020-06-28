@@ -3,7 +3,7 @@ public struct Mapping<T> {
         self.value = value
     }
     
-    var value:T
+    public var value:T
 }
 
 extension Mapping {
@@ -11,5 +11,23 @@ extension Mapping {
     public func map<U>(_ transform: (T) throws -> U) rethrows -> Mapping<U> {
         let newValue:U = try transform(value)
         return Mapping<U>(newValue)
+    }
+}
+@propertyWrapper
+public
+struct Mapable<Value> {
+    
+    public var projectedValue: Mapping<Value>
+    public var wrappedValue: Value {
+        get {
+            projectedValue.value
+        }
+        set {
+            projectedValue.value = newValue
+        }
+    }
+    
+    public init(wrappedValue: Value) {
+        projectedValue = Mapping(wrappedValue)
     }
 }
